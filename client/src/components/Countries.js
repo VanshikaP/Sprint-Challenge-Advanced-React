@@ -18,13 +18,17 @@ const Countries = ({playerData}) => {
         return s.replace(caps, ' $1').trim()
     }
 
+    const activateLink = e => {
+        e.target.classList.toggle('active');
+    }
+
     return (
         <div className='country-container'>
             <div className='countries-container'>
                 {countryData.map(country => {
                     return (
                         <div className='country'>
-                            <Link className='country-link' to={`/country/${country}`}> {insertWhitespace(country)} </Link>
+                            <Link className='country-link'  onClick={activateLink} to={`/country/${country}`}> {insertWhitespace(country)} </Link>
                         </div>
                     )
                 })}

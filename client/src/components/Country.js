@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 
+import Countries from './Countries'
+
 const Country = ({playerData}) => {
     const {countryName} = useParams();
     const [players, setPlayers] = useState([]);
@@ -26,16 +28,21 @@ const Country = ({playerData}) => {
 
 
     return (
-        <div className='players-container'>
-            {players.map(player => {
-                return (
-                    <div className='player-card' key={player.id}>
-                        <h3 className='player-name'> {player.name} </h3>
-                        <p className='player-country'> {player.country} </p>
-                    </div>
-                )
-            })}
+        <div className='container'>
+        <Countries playerData={playerData} />
+        <div className='country-players'>
+            <div className='players-container'>
+                {players.map(player => {
+                    return (
+                        <div className='player-card' key={player.id}>
+                            <h3 className='player-name'> {player.name} </h3>
+                            <p className='player-country'> {player.country} </p>
+                        </div>
+                    )
+                })}
+            </div>    
         </div>
+    </div>
     )
     
 }
