@@ -2,22 +2,28 @@ import React, {useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 
 const Country = ({playerData}) => {
-    const countryName = useParams();
-    // const [players, setPlayers] = useState([]);
-    const [players, setPlayers] = useState(playerData)
+    const {countryName} = useParams();
+    const [players, setPlayers] = useState([]);
 
-    // const insertWhitespace = s => {
-    //     const caps = /([A-Z])/g
-    //     return s.replace(caps, ' $1').trim()
-    // }
+    const insertWhitespace = s => {
+        const caps = /([A-Z])/g
+        return s.replace(caps, ' $1').trim()
+    }
 
-    // useEffect(() => {
-    //     playerData.map(player => {
-    //         if(player.country === insertWhitespace(countryName)){
-    //             setPlayers([...players, player])
-    //         }
-    //     })
-    // }, [countryName])
+    useEffect(() => {
+        let arr = [];
+        playerData.map(player => {
+            if(player.country === insertWhitespace(countryName)){
+                // console.log('Player: ', player.name, ' Country: ', player.country);
+                arr.push(player);
+                // console.log('Players: ', arr)
+            }
+            return arr
+        })
+        // console.log('Final Players: ', arr);
+        setPlayers(arr);
+    }, [countryName])
+
 
     return (
         <div className='players-container'>

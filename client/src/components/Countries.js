@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Link} from 'react-router-dom'
+import {BrowserRouter, Route, Link} from 'react-router-dom'
 
 import Country from './Country'
 
@@ -29,7 +29,6 @@ const Countries = ({playerData}) => {
                     )
                 })}
             </div>
-            <Country playerData={playerData} />
         </div>
     )
 }
