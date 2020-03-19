@@ -1,25 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Route } from 'react-router-dom'
+
+import { useFetch } from './hooks/useFetch'
+
+import NavBar from './components/NavBar'
+import Players from './components/Players'
+import Countries from './components/Countries'
+import Country from './components/Country'
+
 import './App.css';
 
 function App() {
+  const [playerData, setPlayerData] = useFetch();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <NavBar />
+          <Route exact path='/'>
+            <Players playerData={playerData} />
+          </Route>
+          <Route exact path='/country'>
+            <Countries playerData={playerData} />
+          </Route>
+          <Route exact path='/country/:countryName'>
+            <Country playerData={playerData} />
+          </Route>
+      </div>
+    </BrowserRouter>
   );
 }
 
